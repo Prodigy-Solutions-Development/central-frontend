@@ -260,6 +260,7 @@ export default {
             $top: this.top(first ? 0 : this.odata.value.length),
             $count: true,
             $wkt: true,
+            $expand:'*',
             $filter: this.odataFilter,
             $select: this.odataSelect,
             $skiptoken: !first ? new URL(this.odata.nextLink).searchParams.get('$skiptoken') : null
