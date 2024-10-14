@@ -10,17 +10,16 @@ including this file, may be copied, modified, propagated, or distributed
 except according to the terms contained in the LICENSE file.
 -->
 <template>
-  <modal id="submission-update-view-state" :state="state" hideable backdrop @hide="$emit('hide')">
+  <modal id="submission-view-state" state hideable backdrop @hide="$emit('hide')">
     <template #title>{{ $t('title') }}</template>
     <template #body>
-      <form @submit.prevent="submit">
         <div class="row">
           <div class="col-xs-12">
             <div v-for="(value, key) in submission" :key="key">
               <template v-if="isObject(value)">
                 <div>{{ key }}:</div>
                 <div class="indent">
-                  <NestedObject :data="value" />
+                  <nested-field :data="value" />
                 </div>
               </template>
               <template v-else-if="Array.isArray(value)">
@@ -29,7 +28,7 @@ except according to the terms contained in the LICENSE file.
                   <ul>
                     <li v-for="(item, index) in value" :key="index">
                       <template v-if="isObject(item)">
-                        <NestedObject :data="item" />
+                        <nested-field :data="item" />
                       </template>
                       <template v-else>{{ item }}</template>
                     </li>
@@ -47,44 +46,17 @@ except according to the terms contained in the LICENSE file.
             {{ $t('action.neverMind') }}
           </button>
         </div>
-      </form>
     </template>
   </modal>
 </template>
 
 <script>
 import Modal from '../modal.vue';
-import Spinner from '../spinner.vue';
-import MarkdownTextarea from '../markdown/textarea.vue';
-
-import useRequest from '../../composables/request';
-import useViewState from '../../composables/view-state';
-
-import { apiPaths } from '../../util/request';
-import { noop } from '../../util/util';
-
-const selectableStates = ['approved', 'hasIssues', 'rejected'];
+import NestedField from '../nested-field.vue';
 
 export default {
-  name: 'SubmissionUpdateViewState',
-  components: { Modal, Spinner, MarkdownTextarea, NestedObject: {
-      props: ['data'],
-      template: `
-        <div>
-          <div v-for="(value, key) in data" :key="key">
-            <template v-if="typeof value === 'object' && value !== null">
-              <div>{{ key }}:</div>
-              <div class="indent">
-                <NestedObject :data="value" />
-              </div>
-            </template>
-            <template v-else>
-              <div>{{ key }}: {{ value }}</div>
-            </template>
-          </div>
-        </div>
-      `,
-    } },
+  name: 'SubmissionViewState',
+  components: { Modal, NestedField},
   props: {
     state: Boolean,
     projectId: {
@@ -98,20 +70,7 @@ export default {
     submission: Object
   },
   emits: ['hide'],
-  setup() {
-    const { request, awaitingResponse } = useRequest();
-    const { viewStateC } = useViewState();
-    return { request, awaitingResponse, viewStateC };
-  },
-  watch: {
-    state(state) {
-     
-    }
-  },
   methods: {
-    submit() {
-      this.$emit('hide');
-    },
     isObject(value) {
       return value && typeof value === 'object' && !Array.isArray(value);
     }
@@ -124,7 +83,7 @@ export default {
 .indent {
   margin-left: 20px;
 }
-#submission-update-view-state {
+#submission-view-state {
   .form-group {
     margin-bottom: 0;
   }

@@ -52,7 +52,7 @@ except according to the terms contained in the LICENSE file.
     <submission-update-review-state v-bind="reviewModal" :project-id="projectId"
       :xml-form-id="xmlFormId" @hide="reviewModal.hide()"
       @success="afterReview"/>
-    <submission-update-view-state v-bind="viewModal" :project-id="projectId"
+    <submission-view-state v-bind="viewModal" :project-id="projectId"
       :xml-form-id="xmlFormId" @hide="viewModal.hide()"
       />
   </div>
@@ -71,12 +71,11 @@ import SubmissionFieldDropdown from './field-dropdown.vue';
 import SubmissionFilters from './filters.vue';
 import SubmissionTable from './table.vue';
 import SubmissionUpdateReviewState from './update-review-state.vue';
-import SubmissionUpdateViewState from './update-view-state.vue';
+import SubmissionViewState from './view-state.vue';
 
 import useFields from '../../request-data/fields';
 import useQueryRef from '../../composables/query-ref';
 import useReviewState from '../../composables/review-state';
-import useViewState from '../../composables/view-state';
 import useSubmissions from '../../request-data/submissions';
 import { apiPaths } from '../../util/request';
 import { arrayQuery } from '../../util/router';
@@ -96,7 +95,7 @@ export default {
     SubmissionFilters,
     SubmissionTable,
     SubmissionUpdateReviewState,
-    SubmissionUpdateViewState,
+    SubmissionViewState,
     OdataLoadingMessage
   },
   inject: ['alert'],
@@ -165,8 +164,6 @@ export default {
         : { start: null, end: null })
     });
     const { reviewStates: allReviewStates } = useReviewState();
-    const { viewStates: allViewStates } = useViewState();
-    const viewStates =[];
     const reviewStates = useQueryRef({
       fromQuery: (query) => arrayQuery(query.reviewState, {
         validator: (value) => allReviewStates.some(reviewState =>
@@ -180,7 +177,7 @@ export default {
 
     return {
       form, keys, fields, formVersion, odata, submitters,
-      submitterIds, submissionDateRange, reviewStates, allReviewStates,viewStates,allViewStates
+      submitterIds, submissionDateRange, reviewStates, allReviewStates
     };
   },
   data() {
