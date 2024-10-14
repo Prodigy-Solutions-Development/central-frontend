@@ -73,6 +73,7 @@ import SubmissionViewState from './view-state.vue';
 import useFields from '../../request-data/fields';
 import useQueryRef from '../../composables/query-ref';
 import useReviewState from '../../composables/review-state';
+import useViewState from '../../composables/cview-state';
 import useSubmissions from '../../request-data/submissions';
 import { apiPaths } from '../../util/request';
 import { arrayQuery } from '../../util/router';
@@ -161,6 +162,7 @@ export default {
         : { start: null, end: null })
     });
     const { reviewStates: allReviewStates } = useReviewState();
+    const { viewStates: allViewStates } = useViewState();
     const reviewStates = useQueryRef({
       fromQuery: (query) => arrayQuery(query.reviewState, {
         validator: (value) => allReviewStates.some(reviewState =>
@@ -174,7 +176,7 @@ export default {
 
     return {
       form, keys, fields, formVersion, odata, submitters,
-      submitterIds, submissionDateRange, reviewStates, allReviewStates
+      submitterIds, submissionDateRange, reviewStates, allReviewStates,viewStates,allViewStates
     };
   },
   data() {
@@ -188,8 +190,8 @@ export default {
       refreshing: false,
       // Modals
       downloadModal: modalData(),
-      reviewModal: modalData(),
-      viewModal: modalData()
+      viewModal: modalData(),
+      reviewModal: modalData()
     };
   },
   computed: {
