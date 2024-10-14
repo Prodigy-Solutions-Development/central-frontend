@@ -29,6 +29,10 @@ except according to the terms contained in the LICENSE file.
       </div>
       <div class="btn-group">
         <template v-if="canUpdate">
+          <button type="button" class="view-button btn btn-default"
+            :aria-label="$t('action.view')" v-tooltip.aria-label>
+            <span class="icon-eye"></span>
+          </button>
           <button type="button" class="review-button btn btn-default"
             :aria-label="$t('action.review')" v-tooltip.aria-label>
             <span class="icon-check"></span>

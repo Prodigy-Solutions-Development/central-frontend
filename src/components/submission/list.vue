@@ -186,7 +186,8 @@ export default {
       refreshing: false,
       // Modals
       downloadModal: modalData(),
-      reviewModal: modalData()
+      reviewModal: modalData(),
+      viewModal: modalData()
     };
   },
   computed: {
@@ -323,6 +324,9 @@ export default {
         this.odata.value[index].__system.reviewState = reviewState;
         this.$refs.table.afterReview(index);
       }
+    },
+    afterView() {
+      this.viewModal.hide();      
     }
   }
 };

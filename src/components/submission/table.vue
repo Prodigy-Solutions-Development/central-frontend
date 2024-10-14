@@ -66,7 +66,7 @@ defineProps({
   draft: Boolean,
   fields: Array
 });
-const emit = defineEmits(['review']);
+const emit = defineEmits(['review','view']);
 
 // The component does not assume that this data will exist when the component is
 // created.
@@ -76,6 +76,9 @@ const chunkyOData = useChunkyArray(computed(() => odata.value));
 const canUpdate = computed(() =>
   project.dataExists && project.permits('submission.update'));
 
+const view = ({ target, data }) => {
+  if (target.classList.contains('view-button')) emit('view', data);
+};
 const review = ({ target, data }) => {
   if (target.classList.contains('review-button')) emit('review', data);
 };
