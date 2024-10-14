@@ -71,7 +71,7 @@ import SubmissionFieldDropdown from './field-dropdown.vue';
 import SubmissionFilters from './filters.vue';
 import SubmissionTable from './table.vue';
 import SubmissionUpdateReviewState from './update-review-state.vue';
-import SubmissionViewState from './update-view-state.vue';
+import SubmissionUpdateViewState from './update-view-state.vue';
 
 import useFields from '../../request-data/fields';
 import useQueryRef from '../../composables/query-ref';
@@ -96,7 +96,7 @@ export default {
     SubmissionFilters,
     SubmissionTable,
     SubmissionUpdateReviewState,
-    SubmissionViewState,
+    SubmissionUpdateViewState,
     OdataLoadingMessage
   },
   inject: ['alert'],
