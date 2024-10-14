@@ -10,7 +10,7 @@ including this file, may be copied, modified, propagated, or distributed
 except according to the terms contained in the LICENSE file.
 -->
 <template>
-  <modal id="submission-view-state" state hideable backdrop @hide="$emit('hide')">
+  <modal id="submission-view-state" :state="state" hideable backdrop @hide="$emit('hide')">
     <template #title>{{ $t('title') }}</template>
     <template #body>
         <div class="row">
@@ -70,6 +70,10 @@ export default {
     submission: Object
   },
   emits: ['hide'],
+  watch: {
+    state(state) {     
+    }
+  },
   methods: {
     isObject(value) {
       return value && typeof value === 'object' && !Array.isArray(value);
