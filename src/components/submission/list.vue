@@ -262,7 +262,7 @@ export default {
             $wkt: true,
             $expand:'*',
             $filter: this.odataFilter,
-            $select: this.odataSelect,
+            // $select: this.odataSelect,
             $skiptoken: !first ? new URL(this.odata.nextLink).searchParams.get('$skiptoken') : null
           }
         ),
