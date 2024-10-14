@@ -10,7 +10,7 @@ including this file, may be copied, modified, propagated, or distributed
 except according to the terms contained in the LICENSE file.
 -->
 <template>
-  <modal id="submission-view-state" :state="state" hideable="true" backdrop @hide="$emit('hide')">
+  <modal id="submission-update-view-state" :state="state" hideable="true" backdrop @hide="$emit('hide')">
     <template #title>{{ $t('title') }}</template>
     <template #body>
       <form @submit.prevent="submit">
@@ -58,13 +58,15 @@ import Spinner from '../spinner.vue';
 import MarkdownTextarea from '../markdown/textarea.vue';
 
 import useRequest from '../../composables/request';
+import useViewState from '../../composables/view-state';
+
 import { apiPaths } from '../../util/request';
 import { noop } from '../../util/util';
 
 const selectableStates = ['approved', 'hasIssues', 'rejected'];
 
 export default {
-  name: 'SubmissionViewState',
+  name: 'SubmissionUpdateViewState',
   components: { Modal, Spinner, MarkdownTextarea, NestedObject: {
       props: ['data'],
       template: `
@@ -98,7 +100,8 @@ export default {
   emits: ['hide'],
   setup() {
     const { request, awaitingResponse } = useRequest();
-    return { request, awaitingResponse };
+    const { viewStateC } = useViewState();
+    return { request, awaitingResponse, viewStateC };
   },
   watch: {
     state(state) {

@@ -68,12 +68,12 @@ import SubmissionFieldDropdown from './field-dropdown.vue';
 import SubmissionFilters from './filters.vue';
 import SubmissionTable from './table.vue';
 import SubmissionUpdateReviewState from './update-review-state.vue';
-import SubmissionViewState from './view-state.vue';
+import SubmissionViewState from './update-view-state.vue';
 
 import useFields from '../../request-data/fields';
 import useQueryRef from '../../composables/query-ref';
 import useReviewState from '../../composables/review-state';
-import useViewState from '../../composables/cview-state';
+import useViewState from '../../composables/view-state';
 import useSubmissions from '../../request-data/submissions';
 import { apiPaths } from '../../util/request';
 import { arrayQuery } from '../../util/router';
@@ -163,6 +163,7 @@ export default {
     });
     const { reviewStates: allReviewStates } = useReviewState();
     const { viewStates: allViewStates } = useViewState();
+    const viewStates =[];
     const reviewStates = useQueryRef({
       fromQuery: (query) => arrayQuery(query.reviewState, {
         validator: (value) => allReviewStates.some(reviewState =>

@@ -64,7 +64,7 @@ except according to the terms contained in the LICENSE file.
 import DateTime from '../date-time.vue';
 
 import useReviewState from '../../composables/review-state';
-import useViewState from '../../composables/cview-state';
+import useViewState from '../../composables/view-state';
 import useRoutes from '../../composables/routes';
 import { apiPaths } from '../../util/request';
 
