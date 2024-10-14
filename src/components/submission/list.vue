@@ -34,7 +34,7 @@ except according to the terms contained in the LICENSE file.
       <submission-table v-show="odata.dataExists && odata.value.length !== 0"
         ref="table" :project-id="projectId" :xml-form-id="xmlFormId"
         :draft="draft" :fields="selectedFields"
-        @review="reviewModal.show({ submission: $event })"/>
+        @review="reviewModal.show({ submission: $event })" @view="viewModal.show({ submission: $event })"/>
       <p v-show="odata.dataExists && odata.value.length === 0"
         class="empty-table-message">
         {{ odataFilter == null ? $t('submission.emptyTable') : $t('noMatching') }}
