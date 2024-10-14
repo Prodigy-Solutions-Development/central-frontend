@@ -43,7 +43,7 @@ except according to the terms contained in the LICENSE file.
           </div>
         </div>
         <div class="modal-actions">       
-          <button type="button" class="btn btn-link" :aria-disabled="awaitingResponse" @click="$emit('hide')">
+          <button type="button" class="btn btn-link"  @click="$emit('hide')">
             {{ $t('action.neverMind') }}
           </button>
         </div>
@@ -58,7 +58,6 @@ import Spinner from '../spinner.vue';
 import MarkdownTextarea from '../markdown/textarea.vue';
 
 import useRequest from '../../composables/request';
-import useViewState from '../../composables/view-state';
 import { apiPaths } from '../../util/request';
 import { noop } from '../../util/util';
 
@@ -100,6 +99,11 @@ export default {
   setup() {
     const { request, awaitingResponse } = useRequest();
     return { request, awaitingResponse };
+  },
+  watch: {
+    state(state) {
+     
+    }
   },
   methods: {
     submit() {

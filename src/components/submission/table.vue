@@ -12,7 +12,7 @@ except according to the terms contained in the LICENSE file.
 <template>
   <table-freeze v-if="project.dataExists" id="submission-table" ref="table"
     :data="chunkyOData" key-prop="__id" :frozen-only="fields == null" divider
-    @action="review">
+    @action="handleAction">
     <template #head-frozen>
       <th><span class="sr-only">{{ $t('common.rowNumber') }}</span></th>
       <th v-if="!draft">{{ $t('header.submitterName') }}</th>
@@ -82,6 +82,11 @@ const view = ({ target, data }) => {
 const review = ({ target, data }) => {
   if (target.classList.contains('review-button')) emit('review', data);
 };
+const handleAction = ({ target, data }) => {
+  if (target.classList.contains('view-button')) emit('view', data);
+  if (target.classList.contains('review-button')) emit('review', data);
+};
+
 const table = ref(null);
 const afterReview = (index) => { markRowsChanged(table.value.getRowPair(index)); };
 defineExpose({ afterReview });
