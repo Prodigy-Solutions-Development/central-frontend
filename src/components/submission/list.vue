@@ -52,6 +52,9 @@ except according to the terms contained in the LICENSE file.
     <submission-update-review-state v-bind="reviewModal" :project-id="projectId"
       :xml-form-id="xmlFormId" @hide="reviewModal.hide()"
       @success="afterReview"/>
+    <submission-update-view-state v-bind="viewModal" :project-id="projectId"
+      :xml-form-id="xmlFormId" @hide="viewModal.hide()"
+      />
   </div>
 </template>
 

@@ -10,7 +10,7 @@ including this file, may be copied, modified, propagated, or distributed
 except according to the terms contained in the LICENSE file.
 -->
 <template>
-  <modal id="submission-update-view-state" :state="state" hideable="true" backdrop @hide="$emit('hide')">
+  <modal id="submission-update-view-state" :state="state" :hideable="true" backdrop @hide="$emit('hide')">
     <template #title>{{ $t('title') }}</template>
     <template #body>
       <form @submit.prevent="submit">
