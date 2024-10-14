@@ -4,7 +4,7 @@
       <template v-if="isObject(value)">
         <div>{{ key }}:</div>
         <div class="indent">
-          <nested-field :data="value" />
+          <NestedField :data="value" />
         </div>
       </template>
       <template v-else-if="Array.isArray(value)">
@@ -13,7 +13,7 @@
           <ul>
             <li v-for="(item, index) in value" :key="index">
               <template v-if="isObject(item)">
-                <nested-field :data="item" />
+                <NestedField :data="item" />
               </template>
               <template v-else>{{ item }}</template>
             </li>
@@ -28,15 +28,12 @@
 </template>
 
 <script>
-import NestedField from './nested-field.vue';
 
 export default {
   name: 'NestedField',
-  components: { NestedField },
   props: {
     data: {
-      type: Object,
-      required: true
+      type: Object
     }
   },
   methods: {
