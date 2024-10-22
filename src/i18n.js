@@ -40,15 +40,15 @@ const addLocale = (tag, { name, sentenceSeparator = ' ' }) => {
 };
 
 addLocale('en', { name: 'English' });
-addLocale('cs', { name: 'Čeština' });
-addLocale('de', { name: 'Deutsch' });
-addLocale('es', { name: 'Español' });
-addLocale('fr', { name: 'Français' });
-addLocale('id', { name: 'Bahasa Indonesia' });
-addLocale('it', { name: 'Italiano' });
-addLocale('ja', { name: '日本語', sentenceSeparator: '' });
-addLocale('sw', { name: 'Kiswahili' });
-addLocale('zh-Hant', { name: '漢語', sentenceSeparator: '' });
+// addLocale('cs', { name: 'Čeština' });
+// addLocale('de', { name: 'Deutsch' });
+// addLocale('es', { name: 'Español' });
+// addLocale('fr', { name: 'Français' });
+// addLocale('id', { name: 'Bahasa Indonesia' });
+// addLocale('it', { name: 'Italiano' });
+// addLocale('ja', { name: '日本語', sentenceSeparator: '' });
+// addLocale('sw', { name: 'Kiswahili' });
+// addLocale('zh-Hant', { name: '漢語', sentenceSeparator: '' });
 
 
 
