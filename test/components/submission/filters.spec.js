@@ -462,4 +462,29 @@ describe('SubmissionFilters', () => {
       });
     });
   });
+
+  it('disables all filters', () => {
+    testData.extendedProjects.createPast(1, { forms: 1, appUsers: 1 });
+    const fieldKey = testData.extendedFieldKeys.createPast(1).last();
+    testData.extendedSubmissions.createPast(1, { submitter: fieldKey });
+    return loadComponent({ props: { deleted: true } })
+      .afterResponses(component => {
+        component.getComponent(DateRangePicker).props().disabled.should.be.true;
+        const multiselects = component.findAll('.multiselect select');
+        multiselects[0].attributes('aria-disabled').should.equal('true');
+        multiselects[1].attributes('aria-disabled').should.equal('true');
+      });
+  });
+
+  // https://github.com/getodk/central/issues/756
+  it('does not send an extra OData request after filtering, then navigating away', () => {
+    testData.extendedForms.createPast(1);
+    testData.extendedFormVersions.createPast(1, { draft: true });
+    return load('/projects/1/forms/f/submissions?reviewState=%27approved%27')
+      .complete()
+      // If an extra request is sent, then .load() will fail.
+      .load('/projects/1/forms/f/draft/testing', {
+        project: false, form: false, formDraft: false, attachments: false
+      });
+  });
 });
