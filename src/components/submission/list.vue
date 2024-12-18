@@ -46,10 +46,9 @@ except according to the terms contained in the LICENSE file.
       <submission-table v-show="odata.dataExists && odata.value.length !== 0 && odata.removedCount < odata.value.length"
         ref="table" :project-id="projectId" :xml-form-id="xmlFormId"
         :draft="draft" :fields="selectedFields"
-        @review="reviewModal.show({ submission: $event })" @view="viewModal.show({ submission: $event })"/>
-      <p v-show="odata.dataExists && odata.value.length === 0"
         :deleted="deleted" :awaiting-deleted-responses="awaitingResponses"
         @review="reviewModal.show({ submission: $event })"
+        @view="viewModal.show({ submission: $event })"
         @delete="showDelete"
         @restore="showRestore"/>
       <p v-show="odata.dataExists && (odata.value.length === 0 || odata.removedCount === odata.value.length)"
@@ -66,7 +65,7 @@ except according to the terms contained in the LICENSE file.
         :odata="odata"
         :filter="!!odataFilter"
         :refreshing="refreshing"
-        :total-count="formVersion.dataExists ? formVersion.submissions : 0"/>
+        :total-count="formVersion.dataExists ? formVersion.submissions : 0"/>     
     </div>
 
     <submission-download v-bind="downloadModal" :form-version="formVersion"
